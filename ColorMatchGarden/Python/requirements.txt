@@ -1,0 +1,9 @@
+# Python Dependencies for Color Match Garden
+
+# Core dependencies
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+pyserial>=3.5
+
+# Optional for enhanced features
+numpy>=1.24.0
