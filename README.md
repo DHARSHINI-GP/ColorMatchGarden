@@ -19,21 +19,19 @@
 ## 📖 Table of Contents
 
 - [✨ About the Game](#-about-the-game)
-- [⌨️ Keyboard Controls](#️-keyboard-controls-testing-mode)
 - [🎮 How to Play](#-how-to-play)
-- [🌈 Gameplay Flow](#-gameplay-flow)
-- [🎛️ Controls](#️-controls)
+- [⌨️ Keyboard Controls](#️-keyboard-controls-test-mode)
+- [�️ 5-Sensor System](#️-5-sensor-system)
 - [🚀 Quick Start](#-quick-start)
 - [📁 Project Structure](#-project-structure)
-- [🎨 Color System](#-color-system)
+- [🎨 Color Mixing](#-color-mixing)
 - [♿ Accessibility](#-accessibility)
-- [🌟 Design Philosophy](#-design-philosophy)
 
 ---
 
 ## ✨ About the Game
 
-**Color Match Garden** is a peaceful, stress-free experience set in a beautiful garden environment. Children match flower colors using physical inputs (flex sensors connected to Raspberry Pi Pico) and keyboard controls, with absolutely **NO text, timers, scores, or failure states**.
+**Color Match Garden** is a peaceful, stress-free experience set in a beautiful garden environment. Children mix colors using **5 flex sensors** (one for each finger) connected to a Raspberry Pi Pico, with absolutely **NO text, timers, scores, or failure states**.
 
 <div align="center">
 
@@ -45,97 +43,80 @@
 
 ---
 
-## ⌨️ Keyboard Controls (Testing Mode)
+## 🎮 How to Play
+
+1. **👀 See the Target Color** - A target color appears on screen
+2. **🤲 Bend Your Fingers** - Each finger controls a different color
+3. **🎨 Mix Colors** - Combine colors by bending multiple fingers
+4. **✋ Press SPACEBAR** - Verify your color match
+5. **🎉 Celebrate!** - Enjoy the magical celebration!
+
+---
+
+## ⌨️ Keyboard Controls (Test Mode)
 
 <div align="center">
 
 ### 🖥️ Play Without Hardware! 🖥️
 
-*The game includes a **simulation mode** so you can test everything using just your keyboard!*
+*Test the game using your keyboard - each key simulates a flex sensor!*
 
 </div>
 
-### 🎨 Color Controls (RGB)
+### 🎨 Color Keys (Hold to Activate)
 
-| Key | Action | Color Channel |
-|:---:|:---|:---:|
-| **R** / **E** | Increase / Decrease | 🔴 Red |
-| **G** / **D** | Increase / Decrease | 🟢 Green |
-| **B** / **N** | Increase / Decrease | 🔵 Blue |
+| Key | Color | Finger |
+|:---:|:---:|:---:|
+| **Q** | 🔴 Red | Thumb |
+| **W** | 💛 Yellow | Index |
+| **E** | 🟢 Green | Middle |
+| **R** | 🩵 Cyan | Ring |
+| **T** | 🟣 Purple/Violet | Pinky |
 
-### ✨ Additional Controls
+### ✅ Confirm
 
 | Key | Action |
 |:---:|:---|
-| **F** / **T** | Increase / Decrease Brightness |
-| **Y** / **H** | Increase / Decrease Magic Effect |
-| **SPACEBAR** | Verify color match |
+| **SPACEBAR** | Verify your color match |
 
----
+### � How to Mix Colors
 
-## 🎮 How to Play
-
-<div align="center">
-
-### 🌻 It's Simple & Fun! 🌻
-
-</div>
-
-1. **👀 Watch the Target** - A target color appears on screen
-2. **🎨 Mix Your Color** - Use keyboard or flex sensors to adjust RGB values
-3. **✋ Verify Match** - Press SPACEBAR when you think your color matches
-4. **🎉 Celebrate!** - Enjoy the magical celebration when you match correctly!
-
-<div align="center">
-
-*There's no wrong answer - every color you create is beautiful!*
-
-</div>
-
----
-
-## 🌈 Gameplay Flow
-
-<div align="center">
-
-```
-🌟 YOUR MAGICAL JOURNEY 🌟
-
-    🎨 Target color appears
-            ↓
-    🌸 You mix colors with sensors/keyboard
-            ↓
-    ✋ Press SPACEBAR to verify
-            ↓
-    🎉 CELEBRATION TIME!
-            ↓
-    🔄 New color appears (endless fun!)
-```
-
-</div>
-
----
-
-## 🎛️ Controls
-
-### 🖐️ Flex Sensors (3-Sensor Setup with Raspberry Pi Pico)
-
-<div align="center">
-
-| Sensor | Controls | ADC Pin |
-|:---:|:---:|:---:|
-| Sensor 1 | 🔴 Red Channel | GP26 |
-| Sensor 2 | 🟢 Green Channel | GP27 |
-| Sensor 3 | 🔵 Blue Channel | GP28 |
-
-</div>
-
-### 📷 Additional Inputs
-
-| Input | What It Does |
+| Want This Color? | Hold These Keys |
 |:---:|:---|
-| **Keyboard** | RGB control + Brightness + Magic effects |
-| **Webcam** | Optional gesture detection |
+| 🔴 Red | Q only |
+| 💛 Yellow | W only |
+| 🟢 Green | E only |
+| 🩵 Cyan | R only |
+| 🟣 Purple | T only |
+| 🟠 Orange | Q + W (Red + Yellow) |
+| 🩷 Pink | Q + T (Red + Purple) |
+| 💙 Blue-Green | E + R (Green + Cyan) |
+| � Any Mix! | Combine any keys! |
+
+---
+
+## 🎛️ 5-Sensor System
+
+### Hardware Setup
+
+<div align="center">
+
+| Sensor | Finger | Color | Pico Pin |
+|:---:|:---:|:---:|:---:|
+| Sensor 1 | Thumb | 🔴 Red | GP26 (ADC0) |
+| Sensor 2 | Index | 💛 Yellow | GP27 (ADC1) |
+| Sensor 3 | Middle | 🟢 Green | GP28 (ADC2) |
+| Sensor 4 | Ring | 🩵 Cyan | ADC via MUX |
+| Sensor 5 | Pinky | 🟣 Purple | ADC via MUX |
+
+</div>
+
+### How It Works
+
+- **Bend a finger** → That color activates
+- **Bend harder** → Color gets stronger
+- **Relax finger** → Color fades smoothly
+- **Mix fingers** → Colors blend together!
 
 ---
 
@@ -143,45 +124,28 @@
 
 ### Prerequisites
 
-<div align="center">
-
 | Requirement | Description |
 |:---:|:---|
 | 🎮 Unity | Version 2022.3 LTS or later |
 | 🐍 Python | Version 3.8+ |
-| 🤲 Flex Sensors | 3x connected to Raspberry Pi Pico |
+| 🤲 Flex Sensors | 5x connected to Raspberry Pi Pico |
 
-</div>
+### Setup Steps
 
-### Step-by-Step Setup
-
-#### 1️⃣ Unity Setup
+#### 1️⃣ Unity
 ```bash
 1. Open Unity Hub
-2. Open the ColorMatchGarden project
-3. Open the scene: Assets/game.unity
+2. Open ColorMatchGarden project
+3. Open scene: Assets/game.unity
 4. Press Play! ▶️
 ```
 
-#### 2️⃣ Python Bridge Setup
+#### 2️⃣ Python Bridge (for hardware)
 ```bash
-# Navigate to Python folder
 cd ColorMatchGarden/Python
-
-# Install required packages
 pip install -r requirements.txt
-
-# Run the sensor bridge
-python three_sensor_bridge.py
+python five_sensor_bridge.py
 ```
-
-#### 3️⃣ Hardware Connections
-
-| Component | Connection |
-|:---:|:---|
-| 🤲 Flex Sensors | Connect to Raspberry Pi Pico ADC pins (GP26, GP27, GP28) |
-| 🔌 Pico | Connect USB to computer |
-| ⚡ Power | 3.3V from Pico with 10kΩ pull-down resistors |
 
 ---
 
@@ -189,61 +153,42 @@ python three_sensor_bridge.py
 
 ```
 🌸 ColorMatchGarden/
-│
-├── 📜 Assets/
+├── Assets/
 │   ├── Scripts/
-│   │   ├── Core/           # GameManager, ColorController, CameraController
-│   │   ├── Input/          # ThreeSensorInput, FiveSensorInput, GestureRecognizer
-│   │   ├── Effects/        # ParticleController, SoundManager
-│   │   ├── Environment/    # BackgroundManager, GardenEnvironment
-│   │   ├── Flowers/        # InteractiveFlower, FiveSensorFlower
-│   │   └── UI/             # FiveSensorVisualUI, GameGuideUI
-│   │
-│   ├── Materials/          # Flower & environment materials
-│   ├── Textures/           # Garden textures and backgrounds
-│   ├── Prefabs/            # Reusable game objects
-│   └── game.unity          # Main game scene
+│   │   ├── Core/        # GameManager, ColorController
+│   │   ├── Input/       # FiveSensorInput, ThreeSensorInput
+│   │   ├── Effects/     # ParticleController, SoundManager
+│   │   ├── Flowers/     # InteractiveFlower, FiveSensorFlower
+│   │   └── UI/          # FiveSensorVisualUI
+│   └── game.unity       # Main scene
 │
-├── 🐍 Python/
-│   ├── three_sensor_bridge.py    # 3-sensor → Unity bridge
-│   ├── five_sensor_bridge.py     # 5-sensor → Unity bridge
-│   ├── pico_3_sensors.py         # Pico firmware for 3 sensors
-│   └── requirements.txt          # Python dependencies
+├── Python/
+│   ├── five_sensor_bridge.py   # 5-sensor → Unity
+│   ├── three_sensor_bridge.py  # 3-sensor → Unity
+│   └── pico_3_sensors.py       # Pico firmware
 │
-├── 📚 Docs/
-│   ├── QuickStart.md
-│   ├── GameFlow.md
-│   ├── SceneHierarchy.md
-│   └── AnimatorSetup.md
-│
-└── GamePlayGuide.md              # Detailed gameplay instructions
+└── Docs/                # Documentation
 ```
 
 ---
 
-## 🎨 Color System
+## 🎨 Color Mixing
+
+The game uses **weighted average color mixing** - just like real paint!
 
 <div align="center">
 
-The game uses simple **primary and secondary colors** for easy matching:
-
-| Color | RGB Values | How to Create |
-|:---:|:---:|:---|
-| 🔴 Red | `(255, 0, 0)` | Red sensor only |
-| 🟢 Green | `(0, 255, 0)` | Green sensor only |
-| 🔵 Blue | `(0, 0, 255)` | Blue sensor only |
-| 💛 Yellow | `(255, 255, 0)` | Red + Green |
-| 🟣 Magenta | `(255, 0, 255)` | Red + Blue |
-| 🩵 Cyan | `(0, 255, 255)` | Green + Blue |
+| Base Colors | Mix Result |
+|:---:|:---:|
+| 🔴 Red + 💛 Yellow | 🟠 Orange |
+| � Yellow + �🟢 Green | 🍀 Lime |
+| � Green + 🩵 Cyan | 🌊 Teal |
+| 🩵 Cyan + 🟣 Purple | 💙 Blue |
+| 🟣 Purple + 🔴 Red | � Magenta |
 
 </div>
 
-### ✨ Visual Effects
-
-- **Smooth Transitions**: All color changes use eased interpolation
-- **Auto-Confirmation**: Colors match automatically within tolerance
-- **Celebration Particles**: Sparkles and effects on successful match
-- **Persistent Colors**: Colors "stick" when sensors are released
+*Bend multiple fingers at different amounts for infinite color combinations!*
 
 ---
 
@@ -253,27 +198,12 @@ The game uses simple **primary and secondary colors** for easy matching:
 
 | Feature | Description |
 |:---:|:---|
-| 🎯 **High Tolerance** | Very forgiving color matching (40% tolerance) |
-| 🔄 **Auto-Confirm** | No need to press buttons - matches automatically |
 | 📝 **No Text** | Fully visual gameplay |
 | ⏰ **No Timers** | Work at your own pace |
-| 🚫 **No Failures** | Every attempt is celebrated |
-
-</div>
-
----
-
-## 🌟 Design Philosophy
-
-<div align="center">
-
-| Principle | Description |
-|:---:|:---|
-| 💖 **No Failure States** | Every attempt is celebrated with joy! |
-| ⏰ **No Timers** | Children work at their own peaceful pace |
-| 📝 **No Text** | All communication is visual |
-| 🌈 **Positive Reinforcement** | Happy animations and gentle sounds only |
-| 🌿 **Safe Environment** | Calming colors and peaceful garden setting |
+| ❌ **No Failures** | Every attempt is celebrated |
+| � **High Tolerance** | Forgiving color matching |
+| � **Smooth Animations** | Calming visual feedback |
+| 🌿 **Garden Theme** | Peaceful, relaxing environment |
 
 </div>
 
@@ -283,15 +213,13 @@ The game uses simple **primary and secondary colors** for easy matching:
 
 ## 🌻 Ready to Play? 🌻
 
-**Start the game and let the magic begin!**
+**Press Q, W, E, R, T to mix colors - then SPACEBAR to confirm!**
 
-*Remember: There's no wrong way to play - every color you create is beautiful!*
+*Every color you create is beautiful!*
 
 ---
 
 Made with 💖 for **neurodiverse children** everywhere
-
-*Because every child deserves joy in learning!*
 
 🌸 🌼 🌺 🌷 🌻 🌹 💐 🪻 🪷
 
