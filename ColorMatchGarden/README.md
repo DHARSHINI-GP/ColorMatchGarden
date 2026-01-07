@@ -10,8 +10,6 @@
 
 ---
 
-<img src="https://i.imgur.com/placeholder.png" alt="Game Preview" width="600"/>
-
 *A peaceful garden experience where every moment is a celebration! 🎉*
 
 </div>
@@ -28,7 +26,6 @@
 - [🚀 Quick Start](#-quick-start)
 - [📁 Project Structure](#-project-structure)
 - [🎨 Color System](#-color-system)
-- [🧚 Guide Character](#-guide-character)
 - [♿ Accessibility](#-accessibility)
 - [🌟 Design Philosophy](#-design-philosophy)
 
@@ -36,7 +33,7 @@
 
 ## ✨ About the Game
 
-**Color Match Garden** is a peaceful, stress-free experience set in a beautiful garden environment. Children match flower colors using physical inputs (flex sensor) and hand gestures (webcam), with absolutely **NO text, timers, scores, or failure states**.
+**Color Match Garden** is a peaceful, stress-free experience set in a beautiful garden environment. Children match flower colors using physical inputs (flex sensors connected to Raspberry Pi Pico) and keyboard controls, with absolutely **NO text, timers, scores, or failure states**.
 
 <div align="center">
 
@@ -58,56 +55,21 @@
 
 </div>
 
-```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                     ⌨️  K E Y B O A R D   C O N T R O L S  ⌨️               ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║                                                                              ║
-║   🎨 BRIGHTNESS CONTROL (Simulates Flex Sensor)                              ║
-║   ══════════════════════════════════════════════════════════════════════     ║
-║                                                                              ║
-║       ⬆️  UP ARROW      │  Increase brightness (hold to increase)           ║
-║       ⬇️  DOWN ARROW    │  Decrease brightness (hold to decrease)           ║
-║                                                                              ║
-║       1️⃣  KEY 1         │  Quick set to LIGHT (15% - soft pastels)          ║
-║       2️⃣  KEY 2         │  Quick set to MEDIUM (50% - balanced)             ║
-║       3️⃣  KEY 3         │  Quick set to BRIGHT (85% - vivid colors)         ║
-║                                                                              ║
-║   ✋ GESTURE CONTROL (Simulates Hand Gestures)                                ║
-║   ══════════════════════════════════════════════════════════════════════     ║
-║                                                                              ║
-║       SPACEBAR          │  ✋ Open Hand - CONFIRM your color choice          ║
-║                         │     (Hold for 1.5 seconds to confirm)             ║
-║                                                                              ║
-║       R KEY             │  ✊ Closed Fist - RESET and try again              ║
-║                         │     (Hold for 1 second to reset)                  ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
+### 🎨 Color Controls (RGB)
 
-<div align="center">
+| Key | Action | Color Channel |
+|:---:|:---|:---:|
+| **R** / **E** | Increase / Decrease | 🔴 Red |
+| **G** / **D** | Increase / Decrease | 🟢 Green |
+| **B** / **N** | Increase / Decrease | 🔵 Blue |
 
-### 📊 On-Screen Debug Display
+### ✨ Additional Controls
 
-When playing, you'll see two debug panels in the top-left corner:
-
-| Panel | Shows |
+| Key | Action |
 |:---:|:---|
-| **Flex Sensor Debug** | Raw value, Normalized value (0-1), Brightness Level, Mode (Simulation) |
-| **Gesture Debug** | Current gesture, Hold time, Confirmed status |
-
-</div>
-
-### 🎯 Quick Test Flow
-
-```
-1️⃣  Press PLAY in Unity Editor
-2️⃣  Use UP/DOWN arrows to adjust flower brightness
-3️⃣  Press 1, 2, or 3 for quick brightness presets
-4️⃣  Hold SPACEBAR to confirm your color (watch the hold timer!)
-5️⃣  Enjoy the celebration! 🎉
-6️⃣  Wait for next color, or press R to reset
-```
+| **F** / **T** | Increase / Decrease Brightness |
+| **Y** / **H** | Increase / Decrease Magic Effect |
+| **SPACEBAR** | Verify color match |
 
 ---
 
@@ -119,42 +81,12 @@ When playing, you'll see two debug panels in the top-left corner:
 
 </div>
 
-```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                           🎮  H O W   T O   P L A Y  🎮                      ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║                                                                              ║
-║   STEP 1  │  👀 WATCH THE GUIDE                                              ║
-║   ────────┼─────────────────────────────────────────────────────────────     ║
-║           │  A friendly guide character will appear and wave hello!          ║
-║           │  The guide will show you a beautiful color to match.             ║
-║                                                                              ║
-║   STEP 2  │  🎛️ BEND THE FLEX SENSOR                                         ║
-║   ────────┼─────────────────────────────────────────────────────────────     ║
-║           │  Gently bend the flex sensor on your hand.                       ║
-║           │  Watch the flower change brightness as you bend!                 ║
-║           │                                                                  ║
-║           │    🤲 Flat hand    → Soft, light colors                          ║
-║           │    ✊ Bent fingers  → Bright, vivid colors                        ║
-║                                                                              ║
-║   STEP 3  │  ✋ CONFIRM WITH HAND GESTURE                                     ║
-║   ────────┼─────────────────────────────────────────────────────────────     ║
-║           │  When you're happy with your color, show an open hand ✋         ║
-║           │  to the camera to confirm your choice!                           ║
-║                                                                              ║
-║   STEP 4  │  🎉 CELEBRATE!                                                   ║
-║   ────────┼─────────────────────────────────────────────────────────────     ║
-║           │  Watch the magical celebration with sparkles and sounds!         ║
-║           │  Then a new color will appear - play as long as you want!        ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
+1. **👀 Watch the Target** - A target color appears on screen
+2. **🎨 Mix Your Color** - Use keyboard or flex sensors to adjust RGB values
+3. **✋ Verify Match** - Press SPACEBAR when you think your color matches
+4. **🎉 Celebrate!** - Enjoy the magical celebration when you match correctly!
 
 <div align="center">
-
-### 🔄 Want to Start Over?
-
-**Make a fist** ✊ to gently reset and try again!
 
 *There's no wrong answer - every color you create is beautiful!*
 
@@ -167,23 +99,17 @@ When playing, you'll see two debug panels in the top-left corner:
 <div align="center">
 
 ```
-                    🌟 YOUR MAGICAL JOURNEY 🌟
+🌟 YOUR MAGICAL JOURNEY 🌟
 
-          ┌─────────────────────────────────────────┐
-          │                                         │
-          │   🧚  Guide waves hello!                │
-          │        ↓                                │
-          │   🎨  Shows you a target color          │
-          │        ↓                                │
-          │   🌸  You adjust the flower color       │
-          │        ↓                                │
-          │   ✋  Open hand = Confirm!               │
-          │        ↓                                │
-          │   🎉  CELEBRATION TIME!                 │
-          │        ↓                                │
-          │   🔄  New color appears (endless fun!)  │
-          │                                         │
-          └─────────────────────────────────────────┘
+    🎨 Target color appears
+            ↓
+    🌸 You mix colors with sensors/keyboard
+            ↓
+    ✋ Press SPACEBAR to verify
+            ↓
+    🎉 CELEBRATION TIME!
+            ↓
+    🔄 New color appears (endless fun!)
 ```
 
 </div>
@@ -192,28 +118,24 @@ When playing, you'll see two debug panels in the top-left corner:
 
 ## 🎛️ Controls
 
-### 🖐️ Flex Sensor (Wear on Hand)
+### 🖐️ Flex Sensors (3-Sensor Setup with Raspberry Pi Pico)
 
 <div align="center">
 
-| Bend Level | Range | Brightness | Visual Effect |
-|:---:|:---:|:---:|:---:|
-| 🤲 Flat | 0-30% | **Light** | Soft pastel tones |
-| 🤏 Slight Bend | 31-70% | **Medium** | Balanced vibrant colors |
-| ✊ Full Bend | 71-100% | **Bright** | Rich saturated colors |
-
-</div>
-
-### 📷 Webcam Hand Gestures
-
-<div align="center">
-
-| Gesture | What It Does | Visual Feedback |
+| Sensor | Controls | ADC Pin |
 |:---:|:---:|:---:|
-| ✋ **Open Hand** | Confirm your color choice! | ✨ Sparkle particles appear |
-| ✊ **Closed Fist** | Gently reset and try again | 🌊 Soft fade animation |
+| Sensor 1 | 🔴 Red Channel | GP26 |
+| Sensor 2 | 🟢 Green Channel | GP27 |
+| Sensor 3 | 🔵 Blue Channel | GP28 |
 
 </div>
+
+### 📷 Additional Inputs
+
+| Input | What It Does |
+|:---:|:---|
+| **Keyboard** | RGB control + Brightness + Magic effects |
+| **Webcam** | Optional gesture detection |
 
 ---
 
@@ -227,8 +149,7 @@ When playing, you'll see two debug panels in the top-left corner:
 |:---:|:---|
 | 🎮 Unity | Version 2022.3 LTS or later |
 | 🐍 Python | Version 3.8+ |
-| 📷 Webcam | For gesture detection |
-| 🤲 Flex Sensor | Connected via serial port |
+| 🤲 Flex Sensors | 3x connected to Raspberry Pi Pico |
 
 </div>
 
@@ -237,8 +158,8 @@ When playing, you'll see two debug panels in the top-left corner:
 #### 1️⃣ Unity Setup
 ```bash
 1. Open Unity Hub
-2. Create new 3D project OR open ColorMatchGarden
-3. Open the scene: Assets/Scenes/GardenScene.unity
+2. Open the ColorMatchGarden project
+3. Open the scene: Assets/game.unity
 4. Press Play! ▶️
 ```
 
@@ -248,31 +169,19 @@ When playing, you'll see two debug panels in the top-left corner:
 cd ColorMatchGarden/Python
 
 # Install required packages
-pip install opencv-python mediapipe websocket-client pyserial
+pip install -r requirements.txt
 
-# Run the bridges (in separate terminals)
-python flex_sensor_bridge.py    # Terminal 1 - Flex sensor
-python gesture_detection.py     # Terminal 2 - Hand gestures
+# Run the sensor bridge
+python three_sensor_bridge.py
 ```
 
 #### 3️⃣ Hardware Connections
-```
-┌──────────────────────────────────────────────────────────┐
-│                  📋 HARDWARE SETUP                       │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│   🤲 FLEX SENSOR:                                        │
-│      • Connect to Raspberry Pi Pico or Arduino           │
-│      • Connect USB to computer                           │
-│      • Note the COM port (e.g., COM3 on Windows)         │
-│                                                          │
-│   📷 WEBCAM:                                             │
-│      • Built-in or external USB webcam                   │
-│      • Position at face/hand level                       │
-│      • Ensure good lighting                              │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-```
+
+| Component | Connection |
+|:---:|:---|
+| 🤲 Flex Sensors | Connect to Raspberry Pi Pico ADC pins (GP26, GP27, GP28) |
+| 🔌 Pico | Connect USB to computer |
+| ⚡ Power | 3.3V from Pico with 10kΩ pull-down resistors |
 
 ---
 
@@ -281,43 +190,33 @@ python gesture_detection.py     # Terminal 2 - Hand gestures
 ```
 🌸 ColorMatchGarden/
 │
-├── 🎬 Assets/
-│   ├── 🎭 Scenes/
-│   │   └── GardenScene.unity          # Main game scene
+├── 📜 Assets/
+│   ├── Scripts/
+│   │   ├── Core/           # GameManager, ColorController, CameraController
+│   │   ├── Input/          # ThreeSensorInput, FiveSensorInput, GestureRecognizer
+│   │   ├── Effects/        # ParticleController, SoundManager
+│   │   ├── Environment/    # BackgroundManager, GardenEnvironment
+│   │   ├── Flowers/        # InteractiveFlower, FiveSensorFlower
+│   │   └── UI/             # FiveSensorVisualUI, GameGuideUI
 │   │
-│   ├── 📜 Scripts/
-│   │   ├── 🎮 Core/
-│   │   │   ├── GameManager.cs         # Main game orchestration
-│   │   │   ├── ColorController.cs     # Color transitions & effects
-│   │   │   ├── AccessibilityManager   # Accessibility settings
-│   │   │   └── CameraController.cs    # Camera control
-│   │   │
-│   │   ├── 🎛️ Input/
-│   │   │   ├── FlexSensorInput.cs     # Flex sensor handling
-│   │   │   ├── GestureRecognizer.cs   # Hand gesture detection
-│   │   │   └── WebcamHandler.cs       # Webcam processing
-│   │   │
-│   │   ├── 🧚 Characters/
-│   │   │   └── GuideCharacter.cs      # Friendly guide animations
-│   │   │
-│   │   ├── ✨ Effects/
-│   │   │   ├── ParticleController.cs  # Celebration particles
-│   │   │   └── SoundManager.cs        # Calming sounds & music
-│   │   │
-│   │   └── 🌍 Environment/
-│   │       ├── BackgroundManager.cs   # Sky & background
-│   │       └── GardenEnvironment.cs   # Garden decorations
-│   │
-│   ├── 🎨 Materials/                   # Flower & environment materials
-│   ├── 🔊 Audio/                       # Ambient sounds & feedback
-│   └── 🎬 Animations/                  # Character & flower animations
+│   ├── Materials/          # Flower & environment materials
+│   ├── Textures/           # Garden textures and backgrounds
+│   ├── Prefabs/            # Reusable game objects
+│   └── game.unity          # Main game scene
 │
 ├── 🐍 Python/
-│   ├── flex_sensor_bridge.py          # Hardware → Unity bridge
-│   └── gesture_detection.py           # MediaPipe hand detection
+│   ├── three_sensor_bridge.py    # 3-sensor → Unity bridge
+│   ├── five_sensor_bridge.py     # 5-sensor → Unity bridge
+│   ├── pico_3_sensors.py         # Pico firmware for 3 sensors
+│   └── requirements.txt          # Python dependencies
 │
-└── 📚 Docs/
-    └── AnimatorSetup.md               # Guide character setup
+├── 📚 Docs/
+│   ├── QuickStart.md
+│   ├── GameFlow.md
+│   ├── SceneHierarchy.md
+│   └── AnimatorSetup.md
+│
+└── GamePlayGuide.md              # Detailed gameplay instructions
 ```
 
 ---
@@ -326,78 +225,39 @@ python gesture_detection.py     # Terminal 2 - Hand gestures
 
 <div align="center">
 
-The game uses a therapeutic **pastel color palette** designed to be calming and inviting:
+The game uses simple **primary and secondary colors** for easy matching:
 
-| Color | Name | RGB Values | Purpose |
-|:---:|:---:|:---:|:---:|
-| 🩷 | Soft Pink | `(255, 153, 204)` | Warm & loving |
-| 💙 | Gentle Blue | `(153, 204, 255)` | Calm & peaceful |
-| 💛 | Warm Yellow | `(255, 242, 153)` | Happy & bright |
-| 💚 | Calming Green | `(153, 255, 178)` | Natural & fresh |
-| 💜 | Lavender | `(229, 178, 255)` | Dreamy & soft |
-| 🧡 | Peach | `(255, 204, 153)` | Cozy & comfortable |
+| Color | RGB Values | How to Create |
+|:---:|:---:|:---|
+| 🔴 Red | `(255, 0, 0)` | Red sensor only |
+| 🟢 Green | `(0, 255, 0)` | Green sensor only |
+| 🔵 Blue | `(0, 0, 255)` | Blue sensor only |
+| 💛 Yellow | `(255, 255, 0)` | Red + Green |
+| 🟣 Magenta | `(255, 0, 255)` | Red + Blue |
+| 🩵 Cyan | `(0, 255, 255)` | Green + Blue |
 
 </div>
 
 ### ✨ Visual Effects
 
 - **Smooth Transitions**: All color changes use eased interpolation
-- **Gentle Glow**: Flowers emit a warm, magical glow
-- **Particle Magic**: Sparkles accompany every color change
-- **Pulsing Celebration**: Colors pulse joyfully when confirmed
+- **Auto-Confirmation**: Colors match automatically within tolerance
+- **Celebration Particles**: Sparkles and effects on successful match
+- **Persistent Colors**: Colors "stick" when sensors are released
 
 ---
 
-## 🧚 Guide Character
+## ♿ Accessibility Features
 
 <div align="center">
 
-*Meet your friendly garden guide!*
-
-```
-     ╔══════════════════════════════════════════════════════════╗
-     ║              🧚 GUIDE ANIMATION STATES 🧚                ║
-     ╠══════════════════════════════════════════════════════════╣
-     ║                                                          ║
-     ║                     ┌──────────────┐                     ║
-     ║                     │    IDLE      │                     ║
-     ║                     │ (breathing)  │                     ║
-     ║                     └──────┬───────┘                     ║
-     ║                            │                             ║
-     ║           ┌────────────────┼────────────────┐            ║
-     ║           ▼                ▼                ▼            ║
-     ║    ┌───────────┐    ┌───────────┐    ┌───────────┐       ║
-     ║    │   WAVE    │    │  PRESENT  │    │   POINT   │       ║
-     ║    │  👋 hello │    │ 🎨 show   │    │ 🌸 flower │       ║
-     ║    └───────────┘    └───────────┘    └───────────┘       ║
-     ║           │                │                │            ║
-     ║           └────────────────┼────────────────┘            ║
-     ║                            ▼                             ║
-     ║                     ┌───────────┐                        ║
-     ║                     │ CELEBRATE │                        ║
-     ║                     │  🎉 yay!  │                        ║
-     ║                     └───────────┘                        ║
-     ║                                                          ║
-     ╚══════════════════════════════════════════════════════════╝
-```
-
-</div>
-
----
-
-## ♿ Accessibility Settings
-
-*Fully customizable to meet every child's needs!*
-
-<div align="center">
-
-| Setting | Range | Default | What It Does |
-|:---:|:---:|:---:|:---|
-| 🕐 **Transition Speed** | 0.5-3.0s | 1.0s | How fast colors change |
-| 🔆 **Brightness Boost** | 0-50% | 0% | Extra brightness for visibility |
-| 🎯 **Color Tolerance** | 10-50% | 30% | How close matches need to be |
-| ⏱️ **Gesture Timeout** | 1-5s | 2s | Time to hold gesture |
-| ✨ **Particle Density** | 0-100% | 75% | Visual feedback intensity |
+| Feature | Description |
+|:---:|:---|
+| 🎯 **High Tolerance** | Very forgiving color matching (40% tolerance) |
+| 🔄 **Auto-Confirm** | No need to press buttons - matches automatically |
+| 📝 **No Text** | Fully visual gameplay |
+| ⏰ **No Timers** | Work at your own pace |
+| 🚫 **No Failures** | Every attempt is celebrated |
 
 </div>
 
@@ -407,26 +267,13 @@ The game uses a therapeutic **pastel color palette** designed to be calming and 
 
 <div align="center">
 
-```
-╔════════════════════════════════════════════════════════════════════════╗
-║                                                                        ║
-║      💖  N O   F A I L U R E   S T A T E S                            ║
-║          Every attempt is celebrated with joy!                         ║
-║                                                                        ║
-║      ⏰  N O   T I M E R S                                             ║
-║          Children work at their own peaceful pace                      ║
-║                                                                        ║
-║      📝  N O   T E X T                                                 ║
-║          All communication is visual and auditory                      ║
-║                                                                        ║
-║      🌈  P O S I T I V E   R E I N F O R C E M E N T                  ║
-║          Happy animations and gentle sounds only                       ║
-║                                                                        ║
-║      🌿  S A F E   E N V I R O N M E N T                              ║
-║          Calming colors and peaceful ambient sounds                    ║
-║                                                                        ║
-╚════════════════════════════════════════════════════════════════════════╝
-```
+| Principle | Description |
+|:---:|:---|
+| 💖 **No Failure States** | Every attempt is celebrated with joy! |
+| ⏰ **No Timers** | Children work at their own peaceful pace |
+| 📝 **No Text** | All communication is visual |
+| 🌈 **Positive Reinforcement** | Happy animations and gentle sounds only |
+| 🌿 **Safe Environment** | Calming colors and peaceful garden setting |
 
 </div>
 
